@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>PTROdactyl Web Panel</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  html, body {
+    height: 100%;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #eee;
+  }
+  /* Container */
+  .container {
+    max-width: 400px;
+    background: rgba(44, 83, 100, 0.85);
+    margin: 40px auto;
+    border-radius: 15px;
+    padding: 30px 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+  }
+  .container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-align: center;
+    color: #00ffd5;
+    text-shadow: 0 0 7px #00ffd5;
+  }
+  label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #a0e9f0;
+  }
+  input[type=text],
+  input[type=password],
+  select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0f7fb;
+    font-size: 1rem;
+    box-shadow: inset 0 0 5px #00ffd5;
+    transition: background 0.3s ease;
+  }
+  input[type=text]:focus,
+  input[type=password]:focus,
+  select:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+  }
+  button {
+    background: #00ffd5;
+    border: none;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    color: #0a293d;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow:
+      0 0 5px #00ffd5,
+      0 0 15px #00ffd5;
+    transition: background 0.3s, color 0.3s;
+  }
+  button:hover {
+    background: #00aac2;
+    color: #e0f7fb;
+  }
+  .footer {
+    margin-top: 25px;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #66d6e9;
+    user-select: none;
+  }
+  /* Responsive */
+  @media (max-width: 400px) {
+    .container {
+      margin: 20px 10px;
+      padding: 25px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="PTROdactyl web panel login">
+    <h1>PTROdactyl Panel</h1>
+    <form id="loginForm" aria-describedby="loginDesc">
+      <div id="loginDesc" class="sr-only">Login form for PTROdactyl panel</div>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autocomplete="username" required aria-required="true" aria-label="Username" placeholder="Enter your username" />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required aria-required="true" aria-label="Password" placeholder="Enter your password" />
+      <button type="submit" aria-label="Log in to PTROdactyl panel">Login</button>
+    </form>
+    <div class="footer" aria-live="polite" aria-atomic="true" id="statusMessage"></div>
+  </div>
+<script>
+  (function(){
+    const form = document.getElementById('loginForm');
+    const statusMessage = document.getElementById('statusMessage');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      statusMessage.textContent = '';
+      const username = form.username.value.trim();
+      const password = form.password.value.trim();
+      if(username.length < 3 || password.length < 5){
+        statusMessage.textContent = 'Please enter valid credentials.';
+        return;
+      }
+      statusMessage.textContent = 'Logging in...';
+      // Simulate login process (replace with actual login logic)
+      setTimeout(() => {
+        if(username === 'admin' && password === 'password123'){
+          statusMessage.textContent = 'Login successful! Redirecting...';
+          statusMessage.style.color = '#7cffb2';
+          setTimeout(() => {
+            // Redirect or update UI accordingly
+            alert('Welcome to PTROdactyl Panel!');
+          }, 1300);
+        } else {
+          statusMessage.textContent = 'Invalid username or password.';
+          statusMessage.style.color = '#ff6b6b';
+        }
+      }, 1200);
+    });
+  })();
+</script>
+</body>
+</html>
+
+```
